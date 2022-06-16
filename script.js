@@ -8,13 +8,8 @@ function newForEach(arr, callback) {
     }
 }
 
-let x = [1, 2, 3, 4]
-
-x.forEach(elem => console.log(elem))
-
-console.log('//////////////////')
-
-newForEach(x, (elem) => console.log(elem))
+let y = [5,4,3,2,1]
+let x = [1, 2, 3, 4, 5, 'a']
 
 function newMap(arr, callback) {
     let newArr = [];
@@ -23,40 +18,64 @@ function newMap(arr, callback) {
     }
     return newArr
 }
-console.log("//////////////////");
-
-newMap(x, (elem) => console.log(elem + 1));
 
 function newFilter(arr, callback) {
     let newArr = [];
     for (let i = 0; i < arr.length; i++){
-        if (arr[i] == callback(arr[i], i, arr)) {
+        if (callback(arr[i], i, arr)) {
             newArr.push(arr[i])
         }
     }
     return newArr
 }
-console.log("//////////////////");
 
-x.filter((elem) => console.log(elem % 2 === 0));
-console.log("//////////////////");
-
-newFilter(x, (elem) => console.log(elem % 2 == 0))
 console.log("//////////////////");
 
 function newFind(arr, callback) {
-    let find = 'a';
+    let find;
     for (let i = 0; i < arr.length; i++){
-        if (arr[i] == callback(arr[i], i, arr)) {
-           return find = arr[i];
-        } else {
-           return find = undefined;
-        }
+        if (callback(arr[i], i, arr)) {
+            return find = arr[i];
+        } 
     }
     return find
 }
 
-console.log(x.find((elem) => elem % 2 === 0));
-console.log("//////////////////");
-console.log(newFind(x, (elem) => elem % 2 === 0))
+function newIndexOf(arr, elem) {
+    let indexof = 0;
+    for (let i = 0; i < arr.length; i++){
+        if (elem === arr[i]) {
+            return indexof = i // perguntar sobre esse return e se está ok está funcao
+        } else {
+            indexof = -1
+        }
+    }
+    return indexof
+}
 
+function newIncludes(arr, elem) {
+    let includes = false
+    for (let i = 0; i < arr.length; i++){
+        if (arr[i] === elem) {
+            includes = true
+        } 
+    }
+    return includes
+}
+
+// Duvida sobre o reduce 
+function newReduce(arr, callback) {
+    let acc = 0
+    for (let i = 0; i < arr.length; i++){
+        acc += callback(i, arr[i])
+    }
+    return acc
+
+}
+
+console.log(newReduce([1,2], (acc, atual) => acc = atual))
+
+
+console.log([1,2].reduce((acc, atual) => {
+    return acc +=  atual
+}, 0))
