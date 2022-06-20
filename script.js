@@ -36,11 +36,11 @@ function newFind(arr, callback) {
     return find
 }
 
-function newIndexOf(arr, elem) {
-    let indexof = 0;
+function newIndexOf(arr, elem , pontoInicial = 0) {
+    let indexof = pontoInicial;
     for (let i = 0; i < arr.length; i++){
         if (elem === arr[i]) {
-            return indexof = i // perguntar sobre esse return e se está ok está funcao
+            return indexof = i 
         } else {
             indexof = -1
         }
