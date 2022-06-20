@@ -8,9 +8,6 @@ function newForEach(arr, callback) {
     }
 }
 
-let y = [5,4,3,2,1]
-let x = [1, 2, 3, 4, 5, 'a']
-
 function newMap(arr, callback) {
     let newArr = [];
     for (let i = 0; i < arr.length; i++){
@@ -28,8 +25,6 @@ function newFilter(arr, callback) {
     }
     return newArr
 }
-
-console.log("//////////////////");
 
 function newFind(arr, callback) {
     let find;
@@ -63,19 +58,11 @@ function newIncludes(arr, elem) {
     return includes
 }
 
-// Duvida sobre o reduce 
-function newReduce(arr, callback) {
-    let acc = 0
+
+function newReduce(arr, callback, valorInicial = 0) {
+    let acc = valorInicial
     for (let i = 0; i < arr.length; i++){
-        acc += callback(i, arr[i])
+        acc = callback(acc, arr[i], i, arr)
     }
     return acc
-
 }
-
-console.log(newReduce([1,2], (acc, atual) => acc = atual))
-
-
-console.log([1,2].reduce((acc, atual) => {
-    return acc +=  atual
-}, 0))
